@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Micro_editor
+namespace Mircronoseque
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
@@ -23,6 +23,19 @@ namespace Micro_editor
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void TxtEditor_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            int row = txtEditor.GetLineIndexFromCharacterIndex(txtEditor.CaretIndex);
+            int col = txtEditor.CaretIndex - txtEditor.GetCharacterIndexFromLineIndex(row);
+            lbCursorPosition.Text = "Linea " + (row + 1) + ", Letra " + (col + 1);
+            PbLleno.Value = col + 10;
+        }
+
+        private void PbLleno_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
     }
 }
